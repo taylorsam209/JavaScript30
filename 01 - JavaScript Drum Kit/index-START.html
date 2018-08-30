@@ -58,6 +58,65 @@
   <audio data-key="76" src="sounds/tink.wav"></audio>
 
 <script>
+//   window.addEventListener('keydown', function(e) {
+//     console.log(e)
+//     const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`) //select element that is an audio
+//     const key = document.querySelector(`.key[data-key="${e.keyCode}"]`) //select element with class of key that equals to event.keyCode
+//     key.classList.add("playing"); //add class playing to the key element, which will animate it
+//     console.log(audio)
+//     if(!audio) return; //stop the function if there is no element that matches that data-key
+//     audio.currentTime = 0; //rewind to the start
+//     audio.play(); //plays audio element
+//   })
+
+//   function removeTransition(event) {
+//     // console.log(event)
+//     if(event.propertyName !== 'transform') return; //skip it if it's not a transform
+//     console.log(this)
+//     this.classList.remove('playing') //this keyword is equal to variable the function was called on, so in this case the key elements
+//   }
+
+//   const keys = document.querySelectorAll('.key'); //Gives you an array of all elements that match class = .key
+// //looping through each element and adding an event listener transitionend, then run the function removeTransition
+// keys.forEach(key => key.addEventListener('transitionend', removeTransition))
+
+
+//My Own Attempt
+window.addEventListener('keydown', function(e) {
+console.log(e)
+const keyCode = e.keyCode;
+const audio = document.querySelector(`audio[data-key="${keyCode}"]`)
+const keyboardElement = document.querySelector(`.key[data-key="${keyCode}"]`)
+console.log(audio)
+if(!audio) return; //exit function
+keyboardElement.classList.add("playing")
+audio.currentTime = 0;
+audio.play();
+
+//add a class to that element
+console.log(keyboardElement)
+})
+
+const allKeyBoardElements = document.querySelectorAll('.key');
+
+function removeTransition(e) {
+// console.log(e)
+if(e.propertyName !== 'transform') return;
+console.log(e)
+this.classList.remove('playing');
+}
+
+allKeyBoardElements.forEach(key => key.addEventListener("transitionend", removeTransition))
+
+
+
+
+
+
+
+
+
+
 
 </script>
 
